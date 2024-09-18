@@ -35,6 +35,10 @@ public class CardTrick {
         String userSuit = Card.SUITS[userSuitIndex];
         
         boolean cardFound = false;
+        Card luckyCard = new Card();
+        luckyCard.setValue(1);
+        luckyCard.setSuit("Clubs");
+
         for (int i = 0; i < magicHand.length; i++) 
         {
             int CVal = magicHand[i].getValue(); 
@@ -43,19 +47,41 @@ public class CardTrick {
             
             boolean isValueMatch = (CVal == UVal);
             boolean isSuitMatch = cardSuit.equalsIgnoreCase(userSuit);
+            
+            
             if (isValueMatch && isSuitMatch) 
             {
                 System.out.println("the card is in the magic hand");
                 cardFound = true;
                 break;
             }
-            else
+        }
+        
+        if (!cardFound) 
+        {
+            boolean luckyCardFound = false;
+            for (int i = 0; i < magicHand.length; i++) 
             {
-                System.out.println("the card is NOT in the magic hand");
-                break;
+                int CVal = magicHand[i].getValue(); 
+                String cardSuit = magicHand[i].getSuit(); 
+
+                boolean isValueMatch = (CVal == luckyCard.getValue());
+                boolean isSuitMatch = cardSuit.equalsIgnoreCase(luckyCard.getSuit());
+
+                if (isValueMatch && isSuitMatch) 
+                {
+                    System.out.println("You win! The lucky card is in the magic hand.");
+                    luckyCardFound = true;
+                    break;
+                }
+            }
+            if (!luckyCardFound) 
+            {
+                System.out.println("You lose! The lucky card is not in the magic hand.");
             }
         }
-      
+        
+        System.out.println("Lucky card: " + luckyCard.getValue() + " of " + luckyCard.getSuit());
     }
 
 }
