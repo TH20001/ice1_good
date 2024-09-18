@@ -55,10 +55,7 @@ public class CardTrick {
                 break;
             }
         }
-        Card lCard = new Card();
-        lCard.setValue(1);
-        lCard.setSuit("Clubs");
-        System.out.println("Luck card: " + lCard.getValue() + " of " + lCard.getSuit());
+      
     }
 
 }
